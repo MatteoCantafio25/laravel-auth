@@ -36,7 +36,7 @@
         @include('includes.layouts.navbar')
 
         <main class="container py-3">
-            @include('includes.alert')
+            @include('includes.alerts')
 
             @yield('content')
         </main>

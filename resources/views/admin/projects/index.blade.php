@@ -17,7 +17,14 @@
             <th scope="col">Slug</th>
             <th scope="col">Created at</th>
             <th scope="col">Updated at</th>
-            <th></th>
+            <th>
+                <div class="d-flex justify-content-end">
+                    <!-- Bottone nuovo Progetto -->
+                    <a href="{{route('admin.projects.create')}}" class="btn btn-sm btn-success">
+                        <i class="fas fa-plus me-2"></i>New Project
+                    </a>
+                </div>
+            </th>
           </tr>
         </thead>
         <tbody>
