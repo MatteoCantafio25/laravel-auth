@@ -41,3 +41,19 @@ Nascondiamo il link ai progetti per chi non è loggato
 Mettete tanta cura perchè questo potrà poi essere il vostro portfolio personale :smile:
 
 Buon lavoro!
+
+# Laravel Boolfolio - Base Day 2
+
+Esercizio di oggi: **Laravel Boolfolio - Base**  
+nome repo: `laravel-auth` (stessa di ieri)
+
+Descrizione:  
+completiamo le CRUD mancanti per il vostro sito portfolio!
+
+**BONUS**  
+tutte le cosette varie che abbiamo visto in classe!
+
+**SUPER BONUS**  
+implementare la modale di bootstrap per la cancellazione
+
+Buon lavoro! :slightly_smiling_face:
