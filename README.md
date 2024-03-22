@@ -57,3 +57,18 @@ tutte le cosette varie che abbiamo visto in classe!
 implementare la modale di bootstrap per la cancellazione
 
 Buon lavoro! :slightly_smiling_face:
+
+# Laravel Boolfolio - Upload Immagini (day 3)
+
+Esercizio di oggi: **Laravel Boolfolio - Upload Immagini**  
+nome repo: `laravel-auth` (sempre la stessa)
+
+**Descrizione:**  
+Aggiungiamo la possibilità di inserire un immagine per i progetti. L'immagine deve essere inserita come file, come abbiamo visto in classe.
+
+Se non avevate già previsto un campo per l'immagine nella tabella dei projects potete aggiungerlo con una migration :smile:
+
+**BONUS**  
+tutte le cosette varie che abbiamo visto in classe!
+
+Buon lavoro e buon weekend!! :slightly_smiling_face:

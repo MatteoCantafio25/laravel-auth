@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -38,7 +40,7 @@ class ProjectController extends Controller
         $request->validate([
             'title' => 'required|string|min:5|max:50|unique:projects',
             'content' => 'required|string|',
-            'image' => 'nullable|url|',
+            'image' => 'nullable|image|mimes:png,jpg,jpeg',
         ], 
         [
             'title.required' => 'Title field is required',
@@ -46,7 +48,8 @@ class ProjectController extends Controller
             'title.min' => 'Title field must be at least :min characters',
             'title.max' => 'Title field must be max :max characters',
             'title.unique' => 'There cannot be two projects with the same title',
-            'image.url' => 'The URL is not valid',
+            'image.image' => 'The inserted file is not an image',
+            'image.mimes' => 'Valid extensions: .png .jpg .jpeg',
         ]);
 
         $data = $request->all();
@@ -56,6 +59,13 @@ class ProjectController extends Controller
         $project->fill($data);
 
         $project->slug = Str::slug($project->title);
+
+        if(Arr::exists($data, 'image')){
+            $extension = $data['image']->extension();
+
+           $img_url = Storage::putFileAs('project_images', $data['image'], "$project->slug.$extension");
+           $project->image = $img_url;
+        }
 
         $project->save();
 
@@ -88,7 +98,7 @@ class ProjectController extends Controller
         $request->validate([
             'title' => ['required', 'string', 'min:5', 'max:50', Rule::unique('projects')->ignore($project->id)],
             'content' => 'required|string|',
-            'image' => 'nullable|url|',
+            'image' => 'nullable|image|mimes:png,jpg,jpeg',
         ], 
         [
             'title.required' => 'Title field is required',
@@ -96,7 +106,8 @@ class ProjectController extends Controller
             'title.min' => 'Title field must be at least :min characters',
             'title.max' => 'Title field must be max :max characters',
             'title.unique' => 'There cannot be two projects with the same title',
-            'image.url' => 'The URL is not valid',
+            'image.image' => 'The inserted file is not an image',
+            'image.mimes' => 'Valid extensions: .png .jpg .jpeg',
         ]);
 
         $data = $request->all();
@@ -104,6 +115,14 @@ class ProjectController extends Controller
         $project->fill($data);
 
         $project->slug = Str::slug($project->title);
+
+        if(Arr::exists($data, 'image')){
+            if($project->image)Storage::delete($project->image);
+            $extension = $data['image']->extension();
+
+            $img_url = Storage::putFileAs('project_images', $data['image'], "$project->slug.$extension");
+            $project->image = $img_url;
+        }
 
         $project->save();
 
@@ -115,6 +134,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if($project->image) Storage::delete($project->image);
         $project->delete();
 
         return to_route('admin.projects.index')->with('type', 'danger')->with('message', 'Project successfully deleted');

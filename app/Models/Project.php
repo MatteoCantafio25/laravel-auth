@@ -11,5 +11,9 @@ class Project extends Model
     use HasFactory;
     use softDeletes;
 
-    protected $fillable = ['title', 'content', 'image'];
+    protected $fillable = ['title', 'content'];
+
+    public function printImage(){
+        return asset('storage/' . $this->image);
+    }
 }

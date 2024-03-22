@@ -26,7 +26,7 @@
                 <div class="row">
                     @if($project->image)
                         <div class="col-3">
-                            <img src="{{$project->image}}" alt="{{$project->title}}">
+                            <img src="{{$project->printImage()}}" alt="{{$project->title}}" style="max-width: 300px"> <!-- style provvisorio -->
                         </div>
                     @endif
                     <div class="col">

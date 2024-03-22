@@ -11,7 +11,7 @@
 
     <div class="clearfix">
         @if ($project->image)
-            <img src="{{$project->image}}" alt="{{$project->title}}" class="me-2 float-start" style="max-width: 500px"> <!-- style provvisorio-->
+            <img src="{{$project->printImage()}}" alt="{{$project->title}}" class="me-2 float-start" style="max-width: 500px"> <!-- style provvisorio-->
         @endif
         <p>{{$project->content}}</p>
         <div>
